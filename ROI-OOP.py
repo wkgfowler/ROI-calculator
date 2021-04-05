@@ -1,9 +1,12 @@
+from IPython.display import clear_output
+
 class ROIcalc():
 
     def __init__(self):
         self.income = []
         self.expenses = []
         self.investment = []
+        self.proplist = []
         self.totalincome = {}
         self.totalexpenses = {}
         self.totalinvestment = {}
@@ -11,23 +14,33 @@ class ROIcalc():
 
     def prop_name(self):
         property_name = input("What name would you like to refer to this property as? ")
-        self.totalincome[property_name] = 0
-        self.totalexpenses[property_name] = 0
-        self.totalinvestment[property_name] = 0
-        self.ROI[property_name] = 0
-    
+        if property_name in self.proplist:
+            print(f"There is already a property with that name. Please try using a different name.")
+            self.prop_name()
+        else:
+            self.proplist.append(property_name)
+            self.totalincome[property_name] = 0
+            self.totalexpenses[property_name] = 0
+            self.totalinvestment[property_name] = 0
+            self.ROI[property_name] = 0
+
     def rent_income(self):
         rent = input("How much do you charge for rent? ")
         try:
             rent = int(rent)
             self.income.append(rent)
         except:
-            print(f"Halie called you stupid. Fucking idiots.")
+            print(f"Error. Please enter a number. ")
             self.rent_income()
-        
+            
     def extra_income(self):
-        extra = int(input("As this is a commercial rental, please add any additional monthly income that you expect to earn: "))
-        self.income.append(extra)
+        extra = input("As this is a commercial rental, please add any additional monthly income that you expect to earn: ")
+        try:
+            extra = int(extra)
+            self.income.append(extra)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.extra_income()
 
     def total_income(self):
         fullincome = sum(self.income)
@@ -36,88 +49,168 @@ class ROIcalc():
                 self.totalincome[key] = fullincome
 
     def tax_exp(self):
-        taxes = int(input("How much are the taxes? "))
-        self.expenses.append(taxes)
+        taxes = input("How much are the taxes? ")
+        try:
+            taxes = int(taxes)
+            self.expenses.append(taxes)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.tax_exp()
 
     def ins_exp(self):
-        insurance = int(input("How much is the insurance? "))
-        self.expenses.append(insurance)
-    
+        insurance = input("How much is the insurance? ")
+        try:
+            insurance = int(insurance)
+            self.expenses.append(insurance)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.ins_exp()
+
     def utilities_exp(self):
-        water = int(input("How much is the water? "))
-        self.expenses.append(water)
-        garbage = int(input("How much is trash pickup? "))
-        self.expenses.append(garbage)
-        electric = int(input("How much is the electric? "))
-        self.expenses.append(electric)
-        gas = int(input("How much is the gas? "))
-        self.expenses.append(gas)
+        water = input("How much is the water? ")
+        try:
+            water = int(water)
+            self.expenses.append(water)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.utilities_exp()
+        garbage = input("How much is trash pickup? ")
+        try:
+            garbage = int(garbage)
+            self.expenses.append(garbage)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.utilities_exp()
+        electric = input("How much is the electric? ")
+        try:
+            electric = int(electric)
+            self.expenses.append(electric)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.utilities_exp()
+        gas = input("How much is the gas? ")
+        try:
+            gas = int(gas)
+            self.expenses.append(gas)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.utilities_exp()
 
     def HOA_exp(self):
-        HOA = int(input("How much are the HOA fees? "))
-        self.expenses.append(HOA)
+        HOA = input("How much are the HOA fees? ")
+        try:
+            HOA = int(HOA)
+            self.expenses.append(HOA)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.HOA_exp()
 
     def yard_exp(self):
-        yard = int(input("How much are your landscaping fees? "))
-        self.expenses.append(yard)
+        yard = input("How much are your landscaping fees? ")
+        try:
+            yard = int(yard)
+            self.expenses.append(yard)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.yard_exp()
 
     def vacancy_exp(self):
-        vacancy = int(input("How much are you setting aside in case of a vacancy? "))
-        self.expenses.append(vacancy)
+        vacancy = input("How much are you setting aside in case of a vacancy? ")
+        try:
+            vacancy = int(vacancy)
+            self.expenses.append(vacancy)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.vacancy_exp()
 
     def repair_exp(self):
-        repair = int(input("How much are you setting aside for repairs? "))
-        self.expenses.append(repair)
+        repair = input("How much are you setting aside for repairs? ")
+        try:
+            repair = int(repair)
+            self.expenses.append(repair)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.repair_exp()
 
     def capex_exp(self):
-        capex = int(input("How much are you setting aside for capital expenditures? "))
-        self.expenses.append(capex)
+        capex = input("How much are you setting aside for capital expenditures? ")
+        try:
+            capex = int(capex)
+            self.expenses.append(capex)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.capex_exp()
 
     def manage_exp(self):
-        manage = int(input("How much are you paying for property management? "))
-        self.expenses.append(manage)
+        manage = input("How much are you paying for property management? ")
+        try:
+            manage = int(manage)
+            self.expenses.append(manage)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.manage_exp()
 
     def mortgage_exp(self):
-        mortgage = int(input("How much is the mortgage? "))
-        self.expenses.append(mortgage)
+        mortgage = input("How much is the mortgage? ")
+        try:
+            mortgage = int(mortgage)
+            self.expenses.append(mortgage)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.mortgage_exp()
 
     def down_payment(self):
-        downpayment = int(input("How much was your down payment on the property? "))
-        self.investment.append(downpayment)
+        downpayment = input("How much was your down payment on the property? ")
+        try:
+            downpayment = int(downpayment)
+            self.investment.append(downpayment)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.down_payment()
 
     def closing_costs(self):
-        closingcosts = int(input("How much did you pay in closing costs? "))
-        self.investment.append(closingcosts)
+        closingcosts = input("How much did you pay in closing costs? ")
+        try:
+            closingcosts = int(closingcosts)
+            self.investment.append(closingcosts)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.closing_costs()
 
     def reno_costs(self):
-        renovations = int(input("How much did you spend on renovations? "))
-        self.investment.append(renovations)
+        renovations = input("How much did you spend on renovations? ")
+        try:
+            renovations = int(renovations)
+            self.investment.append(renovations)
+        except:
+            print(f"Error. Please enter a number. ")
+            self.reno_costs()
 
     def total_expenses(self):
         fullexpense = sum(self.expenses)
-        for value in self.totalexpenses.values():
+        for key, value in self.totalexpenses.items():
             if value == 0:
-                value = fullexpense
+                self.totalexpenses[key] = fullexpense
 
     def total_investments(self):
         fullinvestment = sum(self.investment)
-        for value in self.totalinvestment.values():
+        for key, value in self.totalinvestment.items():
             if value == 0:
-                value = fullinvestment
-        
+                self.totalinvestment[key] = fullinvestment
+
 
     def roi_calc(self):
-        cashflow = sum(self.income) / sum(self.expenses) * 12 
-        roi = cashflow / sum(self.investment) * 100
-        for value in self.ROI.values():
+        cashflow = ((sum(self.income)) - (sum(self.expenses))) * 12 
+        roi = round(((cashflow / (sum(self.investment))) * 100), 2)
+        for key, value in self.ROI.items():
             if value == 0:
-                value = roi
+                self.ROI[key] = roi
         print(f"This property's ROI is: {roi}%.")
         self.income.clear()
         self.expenses.clear()
         self.investment.clear()
-        
-        
+
+
     def prev_property(self):
         which_prop = input("Please type your property name to view your data: ")
         if which_prop.lower() in self.ROI:
@@ -127,7 +220,10 @@ class ROIcalc():
             print(self.ROI[which_prop])
         else:
             print(f"Error. Please try again.")
+            self.prev_property()
 
+    def prop_list(self):
+        print(self.proplist)
 
 test = ROIcalc()
 
@@ -135,8 +231,9 @@ def runROI():
     print(f"Hello and welcome to our ROI calculator!")
 
     while True:
-        response = input("Would you like to calculate your ROI or look up a previous properties values? (Please input 'Calculate' or 'Previous Property')")
+        response = input("Would you like to calculate your ROI or look up a previous properties values? (Please input 'Calculate' or 'Previous Property') ")
         if response.lower() == 'calculate':
+            clear_output()
             test.prop_name()
             prop_type = input("Is this a 'residential' or 'commercial' property? ")
             if prop_type.lower() == 'residential':
@@ -180,8 +277,10 @@ def runROI():
             else:
                 print(f"Error. Please try again.")
         elif response.lower() == 'previous property':
+            clear_output()
+            test.prop_list()
             test.prev_property()
         else:
-            print(f"Error. Please trya gain.")
-            
-runROI()
+            print(f"Error. Please try again.")
+
+runROI() 
